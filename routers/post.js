@@ -1,44 +1,27 @@
 import express, { Router } from "express";  
-import character from "../data.js";
+
+import characterController from "../controller/characterController.js"
 
 const router = express.Router(); 
 
 
 //index
-router.get("/", (req,res)=>{
-    const info = {
-        numChar : character.length,
-        result : character,
-    }
-    res.json("info")
-})
+router.get("/", characterController.index)
 
 //show
-router.get("/:id", (req, res)=>{
-    const id = parseInt(req.params.id);
-    const resp = character.find(character => character.id === id)
-    res.json(resp)
-})
+router.get("/:id", characterController.show)
+
 //store
-router.post("/", (req, res)=>{
-    res.send("creazione character")
-})
+router.post("/", characterController.store)
+
 //update
-router.put("/:id", (req, res)=>{
-    const id = req.params.id;
-    res.send("Aggiorna character" + id)
-})
+router.put("/:id", characterController.update)
+
 //modify
-router.patch("/:id", (req, res)=>{
-    const id = req.params.id;
-    res.send("modifica character n'" + id)
-})
+router.patch("/:id", characterController.modify)
 
 //destroy
-router.delete("/:id", (req, res)=>{
-    const id = req.params.id;
-    res.send("cancella character n'" + id)
-})
+router.delete("/:id", characterController.destroy)
 
 
 export default router;
