@@ -37,8 +37,18 @@ function store(req, res) {
 }
 //update
 function update(req, res) {
-    const id = req.params.id;
-    res.send("Aggiorna character" + id)
+    const id = parseInt(req.params.id);
+
+    const dati = req.body;
+    const pg = character.find((cur) => cur.id === id);
+
+        pg.nome = dati.nome;
+        pg.ruolo = dati.ruolo;
+        pg.frutto = dati.frutto;
+        pg.descrizione = dati.descrizione;
+        pg.taglia = dati.taglia;
+
+    res.json(pg)
 }
 //modify
 function modify(req, res) {
