@@ -20,6 +20,13 @@ function store(req, res) {
     
     const newId = character[character.length - 1].id + 1;
 
+    if(pg === undefined){
+        res.status(404);
+        return res.json({
+            message : "not found"
+        });
+    }
+
     const newCharacter = {
         id: newId,
         nome: dati.nome,
