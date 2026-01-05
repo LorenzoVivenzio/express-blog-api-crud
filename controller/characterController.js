@@ -16,7 +16,24 @@ function show(req, res) {
 }
 //store
 function store(req, res) {
-    res.send("creazione character")
+    const dati = req.body;
+    
+    const newId = character[character.length - 1].id + 1;
+
+    const newCharacter = {
+        id: newId,
+        nome: dati.nome,
+        ruolo: dati.ruolo,
+        frutto: dati.frutto,
+        descrizione: dati.descrizione,
+        taglia: dati.taglia,
+        attacchi_speciali: dati.attacchi_speciali,
+    }
+
+    character.push(newCharacter);
+
+    res.status(201);
+    res.json(newCharacter);
 }
 //update
 function update(req, res) {
