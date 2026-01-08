@@ -2,6 +2,7 @@ import express from "express";
 import character from "./data.js";
 import postRouter from "./routers/post.js";
 import notFound from "./routers/middleware/notFound.js";
+import errorsHandler from "./routers/middleware/errorsHandler.js";
 
 const app = express();
 const port = 3000;
@@ -22,6 +23,8 @@ app.get("/character", (req, resp) => {
 })
 
 app.use("/character", postRouter)
+
+app.use(errorsHandler)
 app.use(notFound)
 
 
