@@ -1,5 +1,4 @@
 import express, { Router } from "express";  
-
 import characterController from "../controller/characterController.js"
 
 const router = express.Router(); 
